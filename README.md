@@ -7,14 +7,13 @@
 At sKalable we are Kotlin Obsessed! Making the environment better is part of our daily mission. We want to make all
 things KotlinJS amazingly easy to work with too.
 
-As part of our pursuit to clean up code, we will be delving into state management in this two part tutorial. :
-sunglasses:
+As part of our pursuit to clean up code, we will be delving into state management in this two part tutorial. :sunglasses:
 
 `useState` part of React Hooks for `state` management is something that even [`Javascript`](https://www.javascript.com/) and [`Typescript`](https://www.typescriptlang.org/) engineers struggle with from time to time. We are going to reduce this struggle within the React ecosystem using KotlinJS and the ever incredible [Kotlin-React](https://github.com/JetBrains/kotlin-wrappers/blob/master/kotlin-react/README.md) library.
 
 ## Understanding state
 
-To get a grasp of what we are trying to do we need to grasp what `state` is in [react](https://reactjs.org/) programming.
+To get an idea of what we are trying to do we need to grasp what `state` is in [react](https://reactjs.org/) programming.
 
 **_So lets start!_**
 
