@@ -2,7 +2,12 @@ plugins {
     kotlin("js") version "1.4.30"
 }
 
-val kotlinJS = "pre.113-kotlin-1.4.0"
+val kotlin = "1.4.30"
+val kotlinBase = "-pre.148-kotlin-"
+val kotlinReact = "17.0.1"
+val kotlinStyled = "5.2.1"
+val kotlinJSReact = kotlinReact + kotlinBase + kotlin
+val kotlinJSStyled = kotlinStyled + kotlinBase + kotlin
 
 group = "dev.skalable"
 version = "1.0-SNAPSHOT"
@@ -14,12 +19,9 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-js"))
-    testImplementation(kotlin("test-js"))
-    implementation("org.jetbrains.kotlinx:kotlinx-html:0.7.2")
-    implementation("org.jetbrains:kotlin-react:16.13.1-${kotlinJS}")
-    implementation("org.jetbrains:kotlin-react-dom:16.13.1-${kotlinJS}")
-    implementation("org.jetbrains:kotlin-styled:1.0.0-${kotlinJS}")
+    implementation("org.jetbrains:kotlin-react:${kotlinJSReact}")
+    implementation("org.jetbrains:kotlin-react-dom:${kotlinJSReact}")
+    implementation("org.jetbrains:kotlin-styled:${kotlinJSStyled}")
 }
 
 kotlin {
@@ -28,7 +30,6 @@ kotlin {
             webpackTask {
                 cssSupport.enabled = true
             }
-
             runTask {
                 cssSupport.enabled = true
             }

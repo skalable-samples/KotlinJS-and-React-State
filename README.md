@@ -7,7 +7,8 @@
 At sKalable we are Kotlin Obsessed! Making the environment better is part of our daily mission. We want to make all
 things KotlinJS amazingly easy to work with too.
 
-As part of our pursuit to clean up code, we will be delving into state management in this two part tutorial. :sunglasses:
+As part of our pursuit to clean up code, we will be delving into state management in this two part tutorial. :
+sunglasses:
 
 `useState` part of React Hooks for `state` management is something that even [`Javascript`](https://www.javascript.com/) and [`Typescript`](https://www.typescriptlang.org/) engineers struggle with from time to time. We are going to reduce this struggle within the React ecosystem using KotlinJS and the ever incredible [Kotlin-React](https://github.com/JetBrains/kotlin-wrappers/blob/master/kotlin-react/README.md) library.
 
@@ -209,6 +210,8 @@ There we have it, two approaches to using state in both a Class and Functional C
 Effective code is clean and readable code. Also, you might be wondering how to handle multiple states? We cover this in Part 2 of KotlinJS and State Hooks!
 
 As always, you can find the sample project for the above [here](https://github.com/skalable-samples/KotlinJS-and-React-State)
+
+_[Part 2 is now available](https://github.com/skalable-samples/KotlinJS-and-React-State/blob/master/README_PART_2.md)_
 
 Thank you for taking your time to learn with us! Feel free to reach out and say hello. 
 

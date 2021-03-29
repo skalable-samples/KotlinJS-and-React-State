@@ -1,3 +1,5 @@
+package reflectiveInput
+
 import kotlinx.html.InputType
 import kotlinx.html.js.onChangeFunction
 import kotlinx.html.js.onClickFunction
@@ -9,42 +11,37 @@ import react.dom.input
 import react.dom.label
 
 /**
- * Props Interface allows us to pass in the parameter word
- * to the functional component.
- * @see enterWord
- */
-external interface EnterWordProps : RProps {
-    var word: String
-}
-
-/**
- * EnterWordState is used as a State Object
+ * EnterWordStateOriginal is used as a State Object
+ *
  * @property word is the word that is updated when the input changes.
  * @property updateClicked is the property that is updated when the button gets clicked.
+ * @property updatedWord the new word that has been updated.
  */
-external interface EnterWordState {
+external interface EnterWordStateOriginal {
     var word: String
     var updateClicked: Int
+    var updatedWord: String
 }
 
 /**
- * enterWord is a functional component that renders an input, a button and a label.
+ * enterWordOriginal is a functional component that renders an input, a button and a label.
  */
-private val enterWord = functionalComponent<EnterWordProps> { props ->
+private val enterWordOriginal = functionalComponent<RProps> {
     /**
-     * When we first declare the useState, the default value is set in the parenthesis. This will be held in enterWord.
-     * To modify this we use the setEnterWord function.
-     * To clarify enterWord is a value, setEnterWord is a function.
+     * When we first declare the useState, the default value is set in the parenthesis.
+     * This will be held in enterWordState.
+     *
+     * To modify this we use the setEnterWord function, delegated with the [by] key.
+     * To clarify enterWord is treated as a var with a getter and a setter.
      */
-    var enterWordState by useState<EnterWordState>(object : EnterWordState {
-        override var word = props.word
-        override var updateClicked = 0
-    })
+    var enterWordState by useState<EnterWordStateOriginal> {
+        object : EnterWordStateOriginal {
+            override var word = ""
+            override var updateClicked = 0
+            override var updatedWord = ""
+        }
+    }
 
-    /**
-     * Primitive State based on a String. The type is inferred.
-     */
-    var updatedWordState by useState("")
     /**
      * Div container with input, button and label inside.
      */
@@ -56,16 +53,17 @@ private val enterWord = functionalComponent<EnterWordProps> { props ->
         input {
             attrs {
                 type = InputType.text
-                value = enterWordState.word
+                placeholder = "Enter your word"
                 /**
                  * @see onChangeFunction is fired when the Input value changes.
                  * When executed, we update the EnterWordState for word.
                  * This doesn't update updateClicked and this remains as the same value.
                  */
                 onChangeFunction = { event ->
-                    enterWordState = object : EnterWordState {
+                    enterWordState = object : EnterWordStateOriginal {
                         override var word = (event.target as HTMLInputElement).value
                         override var updateClicked = enterWordState.updateClicked
+                        override var updatedWord = enterWordState.updatedWord
                     }
                 }
             }
@@ -83,11 +81,11 @@ private val enterWord = functionalComponent<EnterWordProps> { props ->
                 +"Update"
                 attrs {
                     onClickFunction = {
-                        enterWordState = object : EnterWordState {
+                        enterWordState = object : EnterWordStateOriginal {
                             override var word = enterWordState.word
                             override var updateClicked = enterWordState.updateClicked + 1
+                            override var updatedWord = enterWordState.word
                         }
-                        updatedWordState = enterWordState.word
                     }
                 }
             }
@@ -97,14 +95,12 @@ private val enterWord = functionalComponent<EnterWordProps> { props ->
      * Label shows the updated word.
      */
     label {
-        +updatedWordState
+        +enterWordState.updatedWord
     }
 }
 
 /**
  * ReactBuilder function used to construct the React Component enterWord.
  */
-fun RBuilder.enterWord(word: String = "Enter a word") = child(enterWord) {
-    attrs.word = word
-}
+fun RBuilder.enterWordOriginal() = child(enterWordOriginal)
 
